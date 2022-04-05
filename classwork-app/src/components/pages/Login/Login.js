@@ -22,7 +22,7 @@ function Login() {
         setState((oldValue)=>({...oldValue,[name]:value}))
     }
     const history = useHistory();
-    const [isInvalid,setInvalid] = React.useState();
+    const [isInvalid,setInvalid] = React.useState(false);
     const handleClick = React.useCallback(()=>{
         if (state.username === user.username && state.password === user.password) {
             console.log(state);
@@ -32,7 +32,7 @@ function Login() {
         else{
             setInvalid(true);
         }
-    },[history])
+    },[history,state])
     return (
     <>
     <div>
@@ -59,7 +59,7 @@ function Login() {
             />
           </FormGroup>
         <Button onClick={handleClick}>Submit</Button>
-        {!isInvalid ?? <InvalidCredential/>}
+        {isInvalid && <InvalidCredential/>}
       </Form>
     </div>
 
