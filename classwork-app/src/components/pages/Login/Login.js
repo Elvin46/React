@@ -16,19 +16,16 @@ const user = {
     password: "elvin"
 }
 function Login() {
-    const [state,setState] = React.useState({
-        username:"",
-        password:""
-    });
+    const [state,setState] = React.useState(user);
     const handleChangeValue=(e)=>{
         const {name,value}=e.target;
         setState((oldValue)=>({...oldValue,[name]:value}))
-        console.log(state);
     }
     const history = useHistory();
     const [isInvalid,setInvalid] = React.useState();
     const handleClick = React.useCallback(()=>{
         if (state.username === user.username && state.password === user.password) {
+            console.log(state);
             setInvalid(false);
            history.push('/users');
         }
